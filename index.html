@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaxiCerveira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --verde: #2e7d32;
+        --amarelo: #fdd835;
+        --fundo: #fefefe;
+        --texto: #222;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: url('https://as2.ftcdn.net/jpg/02/65/42/55/1000_F_265425516_wtAw64cGdOVvrdl64b5bsyBqcD0rkw1W.jpg') center center / cover no-repeat fixed;
+        color: var(--texto);
+        scroll-behavior: smooth;
+    }
+    nav {
+        position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 2rem;
+        display: flex; justify-content: space-between; align-items: center;
+        z-index: 999; transition: background 0.4s ease;
+        background: transparent; color: white;
+    }
+    nav.scrolled { background: var(--verde); color: white; }
+    .logo { font-size: 1.6rem; font-weight: 600; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+        color: inherit; text-decoration: none; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--amarelo); transform: translateY(-2px); }
+    
+    header {
+        height: 100vh;
+        min-height: 300px;  
+        background: url('./Header4.JPG') center/cover no-repeat;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;
+        text-align: center; 
+        color: white; 
+        position: relative;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem; /* 👈 this adds spacing between each element */
+    }
+
+    .button-group {
+        display: flex;
+        gap: 1rem; /* espaço entre os botões */
+    }
+
+    .header-content h1 {
+        font-size: 3rem; 
+        margin: auto    ;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+    
+    .header-content p { 
+        font-size: 1.2rem; 
+        max-width: 600px; 
+        margin: auto; 
+    }
+    
+    .header-btn {
+        background: #25D366; 
+        color: white; 
+        padding: 0.8rem 1.5rem; 
+        border: none; 
+        border-radius: 30px;
+        font-weight: 600; 
+        text-decoration: none;
+    }
+
+    .header-btn:hover { 
+        background: var(--amarelo); 
+    }
+
+    #headerWrapper {
+        width: 100%;
+        margin: 0 auto;
+        transition: width ease;
+    }
+
+
+    section { padding: 4rem 2rem; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
+    h2 { text-align: center; color: var(--verde); margin-bottom: 2rem; }
+    .services, .zonas, .testemunhos {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .service, .zona, .testemunho {
+      background: #e9f5e7; border-radius: 16px; padding: 2rem; text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .service:hover, .zona:hover, .testemunho:hover {
+      transform: translateY(-6px);
+    }
+    .service-icon {
+      background: var(--verde); color: white; font-size: 2rem;
+      width: 50px; height: 50px; border-radius: 50%; line-height: 50px;
+      margin: 0 auto 1rem;
+    }
+    .zona img {
+      width: 100%; height: 140px; object-fit: cover;
+      border-radius: 14px 14px 0 0;
+    }
+    .zona p, .testemunho p { padding: 1rem; font-weight: 500; }
+    .sobre { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; }
+    form {
+        max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;
+    }
+    input, textarea {
+        padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc;
+    }
+    button {
+        background: var(--verde); color: white; border: none;
+        padding: 0.8rem; border-radius: 8px; font-weight: bold;
+    }
+    footer {
+        background: var(--verde); color: white; text-align: center;
+        padding: 2rem; margin-top: 3rem; border-top-left-radius: 40px; border-top-right-radius: 40px;
+    }
+    .whatsapp-button {
+        position: fixed; bottom: 20px; right: 20px;
+        background: #25D366; color: white; padding: 0.9rem 1.2rem;
+        border-radius: 40px; font-weight: bold; text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000;
+    }
+    .whatsapp-button:hover { background: var(--amarelo); }
+    @media (max-width: 600px) {
+        .header-content h1 { font-size: 2rem; }
+        .services, .zonas, .testemunhos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="logo">TaxiCerveira</div>
+        <div class="nav-links">
+            <a href="#zonas">Destinos</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#testemunhos">Avaliações</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <div id="headerWrapper">    
+        <header>
+            <div class="header-content" id="headerContent">
+                <h1>Viaje com conforto em Cerveira</h1>
+                <p>Rápido, fiável e sempre disponível. Reserve agora via WhatsApp!</p>
+                
+                <div class="button-group">
+                    <a href="#whatsapp" class="header-btn">📲 WhatsApp</a>
+                    <a href="tel:+351910779407" class="header-btn">📞 910779407</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+  <section id="zonas">
+    <h2>Destinos Populares</h2>
+    <div class="zonas">
+      <div class="zona"><img src="https://source.unsplash.com/400x300/?village" alt="Cerveira"><p>Vila Nova de Cerveira</p></div>
+      <div class="zona"><img src="https://source.unsplash.com/400x300/?beach" alt="Moledo"><p>Praia de Moledo</p></div>
+      <div class="zona"><img src="https://source.unsplash.com/400x300/?fortress" alt="Valença"><p>Valença do Minho</p></div>
+      <div class="zona"><img src="https://source.unsplash.com/400x300/?mountains" alt="Serra da Arga"><p>Serra da Arga</p></div>
+      <div class="zona"><img src="https://source.unsplash.com/400x300/?river" alt="Rio Minho"><p>Rio Minho & Ecopistas</p></div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <h2>Serviços Disponíveis</h2>
+    <div class="services">
+      <div class="service"><div class="service-icon">🚖</div><p>Táxi Local</p></div>
+      <div class="service"><div class="service-icon">🛫</div><p>Transfers (Aeroporto, Hotel)</p></div>
+      <div class="service"><div class="service-icon">🌍</div><p>Visitas Turísticas</p></div>
+      <div class="service"><div class="service-icon">🏢</div><p>Serviço Empresarial</p></div>
+      <div class="service"><div class="service-icon">💳</div><p>MB Way & Multibanco</p></div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2>Sobre a Empresa</h2>
+    <p class="sobre">
+      Com anos de experiência na região do Alto Minho, a TaxiCerveira oferece um serviço profissional, seguro e personalizado. Os nossos motoristas locais conhecem todos os recantos da região e estão disponíveis 24h por dia para servi-lo com pontualidade e conforto.
+    </p>
+  </section>
+
+  <section id="testemunhos">
+    <h2>Testemunhos</h2>
+    <div class="testemunhos">
+      <div class="testemunho"><p>“Excelente serviço! Levaram-me de Cerveira ao aeroporto com pontualidade e simpatia.”<br><strong>- João M.</strong></p></div>
+      <div class="testemunho"><p>“Motorista super atencioso e carro limpo. Recomendo!”<br><strong>- Ana S.</strong></p></div>
+      <div class="testemunho"><p>“Fizemos um passeio até à Serra da Arga, foi ótimo!”<br><strong>- Carlos T.</strong></p></div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nome" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Mensagem..." rows="4" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem;">📞 +351 912 345 678 | ✉️ taxi@cerveira.pt</p>
+  </section>
+
+  <footer>
+    &copy; 2025 TaxiCerveira. Todos os direitos reservados. <br />
+    <small>Home | Empresa | Contactos | Política de Privacidade</small>
+  </footer>
+
+  <a id="whatsapp" class="whatsapp-button" href="https://wa.me/351910779407?text=Olá!%20Quero%20reservar%20um%20táxi." target="_blank">
+    📲 Pedir Táxi
+  </a>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    const headerContent = document.getElementById('headerContent');
+    const sections = document.querySelectorAll('section');
+    const header = document.querySelector("header");
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+
+        // Encolher na largura horizontalmente com scroll
+        // Scroll progress para shrink (0 até 1)
+        const shrinkScroll = Math.min(scrollY / 800, 1); // máximo 1
+
+        // Cálculo da largura entre 100% e 60%
+        const newWidth = 100 - shrinkScroll * 25; // 100% -> 60%
+
+        headerWrapper.style.width = `${newWidth}%`;
+
+        // Parallax no conteúdo
+        headerContent.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY / 2000})`;
+        headerContent.style.opacity = `${1 - scrollY / 800}`;
+
+        // Fade-in sections
+        sections.forEach(sec => {
+            const top = sec.getBoundingClientRect().top;
+            if (top < window.innerHeight - 250) {
+                sec.classList.add('visible');
+            }
+        });
+    });
+  
+    </script>
+</body>
+</html>
