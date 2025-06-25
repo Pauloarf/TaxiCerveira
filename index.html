@@ -15,12 +15,26 @@
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: url('https://as2.ftcdn.net/jpg/02/65/42/55/1000_F_265425516_wtAw64cGdOVvrdl64b5bsyBqcD0rkw1W.jpg') center center / cover no-repeat fixed;
-        color: var(--texto);
-        scroll-behavior: smooth;
-    }
+	body {
+		font-family: 'Poppins', sans-serif;
+		color: var(--texto);
+		scroll-behavior: smooth;
+		position: relative;
+		z-index: 0;
+	}
+
+	body::before {
+		content: "";
+		position: fixed;
+		top: 0; 
+		left: 0; 
+		right: 0; 
+		bottom: 0;
+		background: url('./Background.png') center center / cover no-repeat;
+		opacity: 0.3; /* 👈 controla a opacidade da imagem */
+		z-index: -1;
+	}
+
     nav {
         position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 2rem;
         display: flex; justify-content: space-between; align-items: center;
@@ -38,7 +52,8 @@
     header {
         height: 100vh;
         min-height: 300px;  
-        background: url('./Header4.JPG') center/cover no-repeat;
+        border: 2px solid black;
+        background: url('./Header.JPG') center/cover no-repeat;
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
@@ -90,11 +105,17 @@
     #headerWrapper {
         width: 100%;
         margin: 0 auto;
-        transition: width ease;
+        transform-origin: top center;
+        transition: transform 0.1s ease;
+        will-change: transform;
     }
 
-
-    section { padding: 4rem 2rem; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    section { 
+		padding: 4rem 2rem; 
+		opacity: 0; 
+		transform: translateY(40px); 
+		transition: all 0.8s ease;
+    }
     section.visible { opacity: 1; transform: translateY(0); }
     h2 { text-align: center; color: var(--verde); margin-bottom: 2rem; }
     .services, .zonas, .testemunhos {
@@ -132,17 +153,6 @@
     footer {
         background: var(--verde); color: white; text-align: center;
         padding: 2rem; margin-top: 3rem; border-top-left-radius: 40px; border-top-right-radius: 40px;
-    }
-    .whatsapp-button {
-        position: fixed; bottom: 20px; right: 20px;
-        background: #25D366; color: white; padding: 0.9rem 1.2rem;
-        border-radius: 40px; font-weight: bold; text-decoration: none;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000;
-    }
-    .whatsapp-button:hover { background: var(--amarelo); }
-    @media (max-width: 600px) {
-        .header-content h1 { font-size: 2rem; }
-        .services, .zonas, .testemunhos { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -227,10 +237,6 @@
     <small>Home | Empresa | Contactos | Política de Privacidade</small>
   </footer>
 
-  <a id="whatsapp" class="whatsapp-button" href="https://wa.me/351910779407?text=Olá!%20Quero%20reservar%20um%20táxi." target="_blank">
-    📲 Pedir Táxi
-  </a>
-
   <script>
     const nav = document.getElementById('navbar');
     const headerContent = document.getElementById('headerContent');
@@ -246,9 +252,9 @@
         const shrinkScroll = Math.min(scrollY / 800, 1); // máximo 1
 
         // Cálculo da largura entre 100% e 60%
-        const newWidth = 100 - shrinkScroll * 25; // 100% -> 60%
+        const newScale = 1 - (shrinkScroll * 0.40); // scale from 1 to 0.60
+        headerWrapper.style.transform = `scaleX(${newScale})`;
 
-        headerWrapper.style.width = `${newWidth}%`;
 
         // Parallax no conteúdo
         headerContent.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY / 2000})`;
