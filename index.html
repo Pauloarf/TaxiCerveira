@@ -8,6 +8,7 @@
   <style>
     :root {
         --verde: #2e7d32;
+        --verde-claro: #e9f5e7;
         --amarelo: #fdd835;
         --fundo: #fefefe;
         --texto: #222;
@@ -21,7 +22,7 @@
 		scroll-behavior: smooth;
 		position: relative;
 		z-index: 0;
-    background-color: var(--fundo);
+        background-color: var(--fundo);
 	}
 
 	body::before {
@@ -37,10 +38,18 @@
 	}
 
     nav {
-        position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 2rem;
-        display: flex; justify-content: space-between; align-items: center;
-        z-index: 999; transition: background 0.4s ease;
-        background: transparent; color: white;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        padding: 1.2rem 2rem;
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        z-index: 999; 
+        transition: background 0.4s ease;
+        background: transparent; 
+        color: var(--texto);
     }
 
     nav.scrolled { 
@@ -48,60 +57,96 @@
         color: white; 
     }
 
-    .logo { 
-        font-size: 1.6rem; 
-        font-weight: 600; 
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.6rem;
+        font-weight: 600;
+        gap: 0.5rem;
     }
+
+    .logo img {
+        height: 70px; 
+        vertical-align: middle; 
+    }
+
     .nav-links { 
         display: flex; 
         gap: 1rem; 
     }
+
     .nav-links a {
         color: inherit; 
         text-decoration: none; 
         font-weight: 500;
     }
-    .nav-links a:hover { color: var(--amarelo); transform: translateY(-2px); }
+
+    .nav-links a:hover {
+        color: var(--amarelo); 
+        transform: translateY(-2px); 
+    }
     
     header {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
         height: 100vh;
-        min-height: 300px;  
-        background: url('./Header.JPG') center/cover no-repeat;
-        display: flex; 
-        justify-content: center; 
-        align-items: center;
-        text-align: center; 
-        color: white; 
+        min-height: 300px;
+        background: url('/car.jpeg') center/cover no-repeat;
+        padding: 0 5%;
+        color: white;
         position: relative;
+        align-items: center; /* vertical centering in grid */
     }
 
-    .header-content {
+
+    .hero-text {
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        text-align: left;
         gap: 1.5rem; /* 👈 this adds spacing between each element */
+        text-shadow: 1px 1px 5px rgba(0,0,0,1);
+        background-color: rgba(0, 0, 0, 0.5); /* fundo preto translúcido */
+        padding: 2rem;
+        border-radius: 16px;
     }
+
+    .hero-text h1 {
+        font-size: 3rem; 
+        margin: auto;
+    }
+    
+    .hero-text p { 
+        font-size: 1.2rem; 
+        margin-right: 300px; 
+        text-shadow: 1px 1px 5px rgba(0,0,0,1);
+    }
+
+    .hero-image {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* horizontally center all children */
+        gap: 1rem;
+    }
+
+    .hero-image img {
+        max-width: 600px; 
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
 
     .button-group {
         display: flex;
-        gap: 1rem; /* espaço entre os botões */
-    }
-
-    .header-content h1 {
-        font-size: 3rem; 
-        margin: auto    ;
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    }
-    
-    .header-content p { 
-        font-size: 1.2rem; 
-        max-width: 600px; 
-        margin: auto; 
+        justify-content: center; /* center the buttons within the group */
+        gap: 1rem;
     }
     
     .header-btn {
-        background: #25D366; 
+        background: var(--verde); 
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         color: white; 
         padding: 0.8rem 1.5rem; 
         border: none; 
@@ -148,22 +193,28 @@
     }
 
     section > div,
+
     section > form,
+
     section > p.sobre {
         background: #ffffffcc;
         backdrop-filter: blur(5px);
         border-radius: 24px;
         padding: 2rem;
         width: 100%;
-        max-width: 1200px;
+        max-width: 80%;
+        text-align: left;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
 
-    h2 { text-align: center; color: var(--verde); margin-bottom: 2rem; }
+    h2 { 
+        text-align: center; 
+        color: var(--verde); 
+        margin-bottom: 2rem; 
+    }
     
     /* Grelhas internas */
     .services,
-    .zonas,
     .testemunhos {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -171,9 +222,8 @@
     }
 
     .service,
-    .zona,
     .testemunho {
-        background: #e9f5e7;
+        background: var(--verde-claro);
         border-radius: 16px;
         padding: 2rem;
         text-align: center;
@@ -182,9 +232,9 @@
     }
 
     .service:hover,
-    .zona:hover,
     .testemunho:hover {
         transform: translateY(-6px);
+        background: var(--amarelo);
     }
 
     .service-icon {
@@ -197,12 +247,138 @@
         line-height: 50px;
         margin: 0 auto 1rem;
     }
-    .zona img {
-      width: 100%; height: 140px; object-fit: cover;
-      border-radius: 14px 14px 0 0;
+
+    .service-img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
     }
-    .zona p, .testemunho p { padding: 1rem; font-weight: 500; }
-    .sobre { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; }
+
+    
+    .service:hover .service-img {
+        transform: scale(1.3);
+    }
+
+    .testemunho p { 
+        padding: 1rem; 
+        font-weight: 500; 
+    }
+
+    .sobre { 
+        max-width: 800px; 
+        margin: 0 auto; 
+        text-align: center; 
+        font-size: 1.1rem; 
+    }
+
+    .cartao-taxi {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .coluna-taxi {
+        background-color: var(--verde-claro);
+        border-radius: 20px;
+        padding: 1.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .coluna-taxi:hover {
+        transform: translateY(-6px);
+        background: var(--amarelo);
+    }
+
+    .imagem-taxi {
+        max-height: 350px;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .titulo-taxi {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .preco-km {
+        font-size: 1.75rem;
+        color: #28a745;
+        margin: 1rem 0;
+    }
+
+    .coluna-taxi-descrip {
+        font-size: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .coluna-taxi p:last-of-type {
+        margin-top: auto; /* força o último parágrafo (preço) para o fundo */
+    }
+
+    .botao-detalhes {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+    .botao-detalhes:hover {
+        background-color: #0056b3;
+    }
+
+    .descricao-taxi ul {
+        list-style: disc;
+        padding-left: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .pagamentos-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .pagamentos-grid img {
+        height: 50px;
+        object-fit: contain;
+        filter: grayscale(0.3);
+        transition: transform 0.2s ease;
+    }
+
+    .pagamentos-grid img:hover {
+        transform: scale(1.2);
+    }
+
+    .palavras-chave-seo {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    @media (max-width: 768px) {
+        .cartao-taxi-unico {
+            flex-direction: column;
+        }
+    }
+
     form {
         max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;
     }
@@ -214,85 +390,194 @@
         padding: 0.8rem; border-radius: 8px; font-weight: bold;
     }
     footer {
-        background: var(--verde); color: white; text-align: center;
-        padding: 2rem; margin-top: 3rem; border-top-left-radius: 40px; border-top-right-radius: 40px;
+        background: var(--verde); 
+        color: white; 
+        text-align: center;
+        padding: 2rem; 
+        margin-top: 3rem; 
     }
   </style>
+  <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TaxiService",
+        "name": "TaxiCerveira",
+        "image": "https://taxicerveira.pt/car_nobg.png",
+        "url": "https://taxicerveira.pt",
+        "telephone": "+351910779407",
+        "priceRange": "€€",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Centro de Vila Nova de Cerveira",
+            "addressLocality": "Vila Nova de Cerveira",
+            "postalCode": "4920",
+            "addressCountry": "PT"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 41.9411,
+            "longitude": -8.7446
+        },
+        "areaServed": [
+            "Vila Nova de Cerveira",
+            "Moledo",
+            "Valença",
+            "Serra da Arga",
+            "Rio Minho",
+            "Vigo",
+            "Porto",
+            "Viana do Castelo"
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "paymentAccepted": "Cash, Credit Card, MBWay, Apple Pay, Google Pay",
+        "description": "Serviço de táxi profissional 24h em Vila Nova de Cerveira e região. Transfers, viagens curtas, passeios turísticos e mais."
+    }
+</script>
 </head>
 <body>
     <nav id="navbar">
-        <div class="logo">TaxiCerveira</div>
+        <div class="logo">
+        <img id="logo-img" src="Logos/logoPreto.png" alt="Logo TaxiCerveira">
+            TaxiCerveira
+        </div>
+
         <div class="nav-links">
-            <a href="#zonas">Destinos</a>
             <a href="#servicos">Serviços</a>
             <a href="#sobre">Sobre</a>
-            <a href="#testemunhos">Avaliações</a>
+            <a href="#tarifas">Tarifas</a>
+            <!-- <a href="#testemunhos">Avaliações</a> -->
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
 
     <div id="headerWrapper">    
-        <header>
-            <div class="header-content" id="headerContent">
-                <h1>Viaje com conforto em Cerveira</h1>
-                <p>Rápido, fiável e sempre disponível. Reserve agora via WhatsApp!</p>
-                
+        <header class="teste">
+            <div class="hero-text" id="headerContent">
+                <h1>Chegue com conforto. Viaje tranquilo.</h1>
+                <p>Táxis disponíveis 24h em Vila Nova de Cerveira. Ligue ou envie mensagem e chegue ao seu destino sem preocupações!</p>
+            </div>
+            <div class="hero-image">
+                <img src="./Logos/logoCores.png" alt="Logo TaxiCerveira" />
                 <div class="button-group">
-                    <a href="#whatsapp" class="header-btn">📲 WhatsApp</a>
+                    <a href="https://wa.me/351910779407?text=Olá%2C%20gostaria%20de%20chamar%20um%20dos%20seus%20táxis!" class="header-btn" target="_blank">📲 WhatsApp</a>
                     <a href="tel:+351910779407" class="header-btn">📞 910779407</a>
                 </div>
             </div>
         </header>
     </div>
 
+    <section id="servicos">
+        <h2>SERVIÇOS PRESTADOS</h2>
+        <div class="services">
+            <div class="service">
+            <img src="Servicos/taxi.png" alt="Táxi Local" class="service-img">
+            <p>Táxi Local</p>
+            </div>
+            <div class="service">
+            <img src="Servicos/airport.png" alt="Transfers" class="service-img">
+            <p>Transfers (Aeroporto, Hotel)</p>
+            </div>
+            <div class="service">
+            <img src="Servicos/globe.png" alt="Visitas Turísticas" class="service-img">
+            <p>Visitas Turísticas</p>
+            </div>
+            <div class="service">
+            <img src="Servicos/building.png" alt="Serviço Empresarial" class="service-img">
+            <p>Serviço Empresarial</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="zonas">
-    <h2>Destinos Populares</h2>
-    <div class="zonas">
-      <div class="zona"><img src="https://source.unsplash.com/400x300/?village" alt="Cerveira"><p>Vila Nova de Cerveira</p></div>
-      <div class="zona"><img src="https://source.unsplash.com/400x300/?beach" alt="Moledo"><p>Praia de Moledo</p></div>
-      <div class="zona"><img src="https://source.unsplash.com/400x300/?fortress" alt="Valença"><p>Valença do Minho</p></div>
-      <div class="zona"><img src="https://source.unsplash.com/400x300/?mountains" alt="Serra da Arga"><p>Serra da Arga</p></div>
-      <div class="zona"><img src="https://source.unsplash.com/400x300/?river" alt="Rio Minho"><p>Rio Minho & Ecopistas</p></div>
-    </div>
-  </section>
-
-  <section id="servicos">
-    <h2>Serviços Disponíveis</h2>
-    <div class="services">
-      <div class="service"><div class="service-icon">🚖</div><p>Táxi Local</p></div>
-      <div class="service"><div class="service-icon">🛫</div><p>Transfers (Aeroporto, Hotel)</p></div>
-      <div class="service"><div class="service-icon">🌍</div><p>Visitas Turísticas</p></div>
-      <div class="service"><div class="service-icon">🏢</div><p>Serviço Empresarial</p></div>
-      <div class="service"><div class="service-icon">💳</div><p>MB Way & Multibanco</p></div>
-    </div>
-  </section>
 
   <section id="sobre">
-    <h2>Sobre a Empresa</h2>
+    <h2>SOBRE NÓS</h2>
     <p class="sobre">
-      Com anos de experiência na região do Alto Minho, a TaxiCerveira oferece um serviço profissional, seguro e personalizado. Os nossos motoristas locais conhecem todos os recantos da região e estão disponíveis 24h por dia para servi-lo com pontualidade e conforto.
+        A TaxiCerveira é uma empresa recente, mas que se apoia numa equipa de motoristas experientes e conhecedores profundos da região do Alto Minho. Graças à experiência acumulada ao longo dos anos em trabalhos anteriores, os nossos condutores garantem um serviço profissional, seguro e eficiente, sempre focado em oferecer conforto e pontualidade em cada viagem.
+        Estamos disponíveis 24 horas por dia, 7 dias por semana, prontos para responder com rapidez e flexibilidade às suas necessidades.
     </p>
   </section>
 
+  <!--
   <section id="testemunhos">
-    <h2>Testemunhos</h2>
+    <h2>TESTEMUNHOS</h2>
     <div class="testemunhos">
       <div class="testemunho"><p>“Excelente serviço! Levaram-me de Cerveira ao aeroporto com pontualidade e simpatia.”<br><strong>- João M.</strong></p></div>
       <div class="testemunho"><p>“Motorista super atencioso e carro limpo. Recomendo!”<br><strong>- Ana S.</strong></p></div>
       <div class="testemunho"><p>“Fizemos um passeio até à Serra da Arga, foi ótimo!”<br><strong>- Carlos T.</strong></p></div>
     </div>
   </section>
+    -->
+    <section id="tarifas">
+        <h2>AS NOSSAS TARIFAS</h2>
+        <div class="cartao-taxi">
+            <!-- Táxi 1 -->
+            <div class="coluna-taxi">
+                <img src="/CarroSClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
+                <h3 class="titulo-taxi">Até 4 Pessoas</h3>
+                <p class="coluna-taxi-descrip">
+                    Os preços apresentados já incluem IVA. De acordo com o seu pedido, escolheremos o veículo que melhor se adapte às suas necessidades. Valor desde:
+                </p>
+                <p class="preco-km"><strong>0,67 €/km*</strong></p>
+            </div>
+
+            <!-- Táxi 2 -->
+            <div class="coluna-taxi">
+                <img src="/CarrinhaVClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
+                <h3 class="titulo-taxi">Mais de 4 Pessoas</h3>
+                <p class="coluna-taxi-descrip">
+                    *Os preços apresentados já incluem IVA. De acordo com o seu pedido, escolheremos o veículo que melhor se adapte às suas necessidades. Valor justo e transparente.
+                </p> 
+                <p class="preco-km"><strong>0,76 €/km*</strong></p> 
+            </div>
+        </div>
+    </section>
+
+    <section id="pagamento">
+        <h2>MÉTODOS DE PAGAMENTO</h2>
+        <div>
+            <div class="pagamentos-grid">
+            <img src="/MetodosPagamento/americanExpress.png" alt="Aceitamos American Express" />
+            <img src="/MetodosPagamento/applePay.png" alt="Aceitamos Apple Pay" />
+            <img src="/MetodosPagamento/Contactless.png" alt="Aceitamos Pagamento Contactless" />
+            <img src="/MetodosPagamento/googlePay.png" alt="Aceitamos Google Pay" />
+            <img src="/MetodosPagamento/jcb.png" alt="Aceitamos JCB" />
+            <img src="/MetodosPagamento/maestro.png" alt="Aceitamos Maestro" />
+            <img src="/MetodosPagamento/masterCard.png" alt="Aceitamos MasterCard" />
+            <img src="/MetodosPagamento/mbway.png" alt="Aceitamos MB Way" />
+            <img src="/MetodosPagamento/samsungPay.png" alt="Aceitamos Samsung Pay" />
+            <img src="/MetodosPagamento/unionPay.png" alt="Aceitamos UnionPay" />
+            <img src="/MetodosPagamento/visa.png" alt="Aceitamos Visa" />
+            <img src="/MetodosPagamento/vpay.png" alt="Aceitamos VPay" />
+            </div>
+        </div>
+        <div class="palavras-chave-seo">
+            Táxi Cerveira, Táxis Cerveira, Taxis Cerveira, Viagem Cerveira, Viajar em Cerveira, Táxis Inatel, Vila Nova de Cerveira, Parque do Castelinho, Cerveira Vigo, Porto Cerveira, Porto Vigo, Viagem para o aeroporto
+        </div>
+    </section>
+
 
   <section id="contacto">
-    <h2>Contacto</h2>
+    <h2>CONTACTO</h2>
     <form>
       <input type="text" placeholder="Nome" required />
       <input type="email" placeholder="Email" required />
       <textarea placeholder="Mensagem..." rows="4" required></textarea>
       <button type="submit">Enviar</button>
     </form>
-    <p style="text-align:center; margin-top:1rem;">📞 +351 912 345 678 | ✉️ taxi@cerveira.pt</p>
+    <p style="text-align:center; margin-top:1rem;">📞 +351 910 779 407 | ✉️ taxi@cerveira.pt</p>
   </section>
 
   <footer>
@@ -304,18 +589,26 @@
     const nav = document.getElementById('navbar');
     const headerContent = document.getElementById('headerContent');
     const sections = document.querySelectorAll('section');
+    const logo = document.getElementById('logo-img');
     const header = document.querySelector("header");
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        nav.classList.toggle('scrolled', window.scrollY > 10);
+        
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+            logo.src = 'Logos/logoBranco.png';
+        } else {
+            navbar.classList.remove('scrolled');
+            logo.src = 'Logos/logoPreto.png';
+        }
 
         // Encolher na largura horizontalmente com scroll
         // Scroll progress para shrink (0 até 1)
-        const shrinkScroll = Math.min(scrollY / 800, 1); // máximo 1
+        const shrinkScroll = Math.min(scrollY / 500, 1); // máximo 1
 
-        // Cálculo da largura entre 100% e 60%
-        const newScale = 1 - (shrinkScroll * 0.40); // scale from 1 to 0.60
+        // Cálculo da largura entre 100% e 80%
+        const newScale = 1 - (shrinkScroll * 0.2); // scale from 1 to 0.60
         headerWrapper.style.transform = `scaleX(${newScale})`;
 
 

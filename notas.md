@@ -1,4 +1,2 @@
-Colocar tarifas
-Responsividade na navbar
-Colocar metodos de pagamento
-Colocar nomes escondidos
+Serviços prestados, direcionar o taxi local para numero de telemovel
+- Direcionar os outros para o email
