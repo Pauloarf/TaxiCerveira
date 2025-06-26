@@ -32,7 +32,7 @@
 		left: 0; 
 		right: 0; 
 		bottom: 0;
-		background: url('/TaxiCerveira/Background.png') center center / cover no-repeat;
+		background: url('./Background.png') center center / cover no-repeat;
 		opacity: 0.3; /* 👈 controla a opacidade da imagem */
 		z-index: -1;
 	}
@@ -465,11 +465,11 @@
 
     <div id="headerWrapper">    
         <header class="teste">
-            <div class="hero-text" id="headerContent">
+            <div class="hero-text" id="headerContent-left">
                 <h1>Chegue com conforto. Viaje tranquilo.</h1>
-                <p>Táxis disponíveis 24h em Vila Nova de Cerveira. Ligue ou envie mensagem e chegue ao seu destino sem preocupações!</p>
+                <p>Táxis disponíveis 24h em toda a zona minho. Ligue ou envie mensagem e chegue ao seu destino sem preocupações!</p>
             </div>
-            <div class="hero-image">
+            <div class="hero-image" id="headerContent-right">
                 <img src="./Logos/logoCores.png" alt="Logo TaxiCerveira" />
                 <div class="button-group">
                     <a href="https://wa.me/351910779407?text=Olá%2C%20gostaria%20de%20chamar%20um%20dos%20seus%20táxis!" class="header-btn" target="_blank">📲 WhatsApp</a>
@@ -587,7 +587,8 @@
 
   <script>
     const nav = document.getElementById('navbar');
-    const headerContent = document.getElementById('headerContent');
+    const LheaderContent = document.getElementById('headerContent-left');
+    const RheaderContent = document.getElementById('headerContent-right');
     const sections = document.querySelectorAll('section');
     const logo = document.getElementById('logo-img');
     const header = document.querySelector("header");
@@ -613,8 +614,10 @@
 
 
         // Parallax no conteúdo
-        headerContent.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY / 2000})`;
-        headerContent.style.opacity = `${1 - scrollY / 800}`;
+        LheaderContent.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY / 2000})`;
+        RheaderContent.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY / 2000})`;
+        LheaderContent.style.opacity = `${1 - scrollY / 350}`;
+        RheaderContent.style.opacity = `${1 - scrollY / 350}`;
 
         // Fade-in sections
         sections.forEach(sec => {
