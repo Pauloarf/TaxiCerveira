@@ -14,7 +14,11 @@
         --texto: #222;
     }
     
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+    }
     
 	body {
 		font-family: 'Poppins', sans-serif;
@@ -32,7 +36,7 @@
 		left: 0; 
 		right: 0; 
 		bottom: 0;
-		background: url('./Background.png') center center / cover no-repeat;
+		background: url('./Background/Background.png') center center / cover no-repeat;
 		opacity: 0.3; /* 👈 controla a opacidade da imagem */
 		z-index: -1;
 	}
@@ -91,18 +95,17 @@
         grid-template-columns: 1fr 1fr; /* Two equal columns */
         height: 100vh;
         min-height: 300px;
-        background: url('/car.jpeg') center/cover no-repeat;
+        background: url('./Background/car.jpeg') center/cover no-repeat;
         padding: 0 5%;
         color: white;
         position: relative;
         align-items: center; /* vertical centering in grid */
     }
 
-
     .hero-text {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         text-align: left;
         gap: 1.5rem; /* 👈 this adds spacing between each element */
         text-shadow: 1px 1px 5px rgba(0,0,0,1);
@@ -114,12 +117,6 @@
     .hero-text h1 {
         font-size: 3rem; 
         margin: auto;
-    }
-    
-    .hero-text p { 
-        font-size: 1.2rem; 
-        margin-right: 300px; 
-        text-shadow: 1px 1px 5px rgba(0,0,0,1);
     }
 
     .hero-image {
@@ -137,11 +134,24 @@
         margin: 0 auto;
     }
 
+    .text-button-line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }   
+
+    .text-button-line p {
+        flex: 1;
+        max-width: 550px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,1);
+        font-size: 1.2rem; 
+    }
 
     .button-group {
         display: flex;
-        justify-content: center; /* center the buttons within the group */
-        gap: 1rem;
+        flex-direction: column; /* ou 'row' se quiser os botões na horizontal */
+        gap: 1.5rem;
     }
     
     .header-btn {
@@ -288,7 +298,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100%;
     }
 
     .coluna-taxi:hover {
@@ -298,9 +307,10 @@
 
     .imagem-taxi {
         max-height: 350px;
-        height: auto;
+        max-width: 100%;
         border-radius: 8px;
         margin-bottom: 1rem;
+        height: auto; /* keep aspect ratio */
     }
 
     .titulo-taxi {
@@ -373,22 +383,21 @@
         border: 0;
     }
 
-    @media (max-width: 768px) {
-        .cartao-taxi-unico {
-            flex-direction: column;
-        }
+    form {
+        max-width: 600px; 
+        margin: 0 auto; 
+        display: flex; 
+        flex-direction: column; 
+        gap: 1rem;
     }
 
-    form {
-        max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;
-    }
     input, textarea {
-        padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc;
+        padding: 0.8rem; 
+        border-radius: 8px; 
+        border: 1px solid #ccc;
     }
-    button {
-        background: var(--verde); color: white; border: none;
-        padding: 0.8rem; border-radius: 8px; font-weight: bold;
-    }
+
+
     footer {
         background: var(--verde); 
         color: white; 
@@ -396,7 +405,92 @@
         padding: 2rem; 
         margin-top: 3rem; 
     }
+
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        header {
+            grid-template-columns: 1fr; /* Empilhar em vez de 2 colunas */
+            padding: 8rem 1rem 1rem;
+        }
+
+        .hero-text {
+            padding: 1.5rem;
+            gap: 1rem;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+        }
+
+        .hero-image {
+            display: none; /* esconde a imagem do header */
+        }
+
+        .text-button-line {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .text-button-line p {
+            font-size: 1rem;
+        }
+
+        .button-group {
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .header-btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-image {
+            margin-top: 2rem;
+        }
+
+        section > div,
+        section > form,
+        section > p.sobre {
+            max-width: 95%;
+            padding: 1.5rem;
+        }
+
+        .services,
+        .testemunhos {
+            grid-template-columns: 1fr;
+        }
+
+        .cartao-taxi {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        .imagem-taxi {
+            width: 100%;
+            max-height: none;
+        }
+
+        .pagamentos-grid img {
+            height: 40px;
+        }
+
+        footer {
+            font-size: 0.9rem;
+        }
+    }
+
   </style>
+  <!-- SCRIPTS-->
   <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -445,7 +539,9 @@
         "paymentAccepted": "Cash, Credit Card, MBWay, Apple Pay, Google Pay",
         "description": "Serviço de táxi profissional 24h em Vila Nova de Cerveira e região. Transfers, viagens curtas, passeios turísticos e mais."
     }
-</script>
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfyW24rAAAAAKvUmrXl5ZvVpZYC7U4BN2tIpM2g"></script>
 </head>
 <body>
     <nav id="navbar">
@@ -455,8 +551,8 @@
         </div>
 
         <div class="nav-links">
-            <a href="#servicos">Serviços</a>
             <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
             <a href="#tarifas">Tarifas</a>
             <!-- <a href="#testemunhos">Avaliações</a> -->
             <a href="#contacto">Contacto</a>
@@ -466,18 +562,29 @@
     <div id="headerWrapper">    
         <header class="teste">
             <div class="hero-text" id="headerContent-left">
-                <h1>Chegue com conforto. Viaje tranquilo.</h1>
-                <p>Táxis disponíveis 24h em toda a zona minho. Ligue ou envie mensagem e chegue ao seu destino sem preocupações!</p>
+                <h1>Viaje com tranquilidade. Chegue com conforto!</h1>
+                <div class="text-button-line">
+                    <p>Táxis disponíveis 24h em toda a zona minho. Ligue ou envie mensagem e chegue ao seu destino sem preocupações!</p>
+                    <div class="button-group">
+                        <a href="https://wa.me/351910779407?..." class="header-btn" target="_blank">📲 WhatsApp</a>
+                        <a href="tel:+351910779407" class="header-btn">📞 910779407</a>
+                    </div>
+                </div>
             </div>
             <div class="hero-image" id="headerContent-right">
                 <img src="./Logos/logoCores.png" alt="Logo TaxiCerveira" />
-                <div class="button-group">
-                    <a href="https://wa.me/351910779407?text=Olá%2C%20gostaria%20de%20chamar%20um%20dos%20seus%20táxis!" class="header-btn" target="_blank">📲 WhatsApp</a>
-                    <a href="tel:+351910779407" class="header-btn">📞 910779407</a>
-                </div>
+
             </div>
         </header>
     </div>
+
+    <section id="sobre">
+        <h2>SOBRE NÓS</h2>
+        <p class="sobre">
+            A TaxiCerveira é uma empresa recente, mas que se apoia numa equipa de motoristas experientes e conhecedores profundos da região do Alto Minho. Graças à experiência acumulada ao longo dos anos em trabalhos anteriores, os nossos condutores garantem um serviço profissional, seguro e eficiente, sempre focado em oferecer conforto e pontualidade em cada viagem.
+            Estamos disponíveis 24 horas por dia, 7 dias por semana, prontos para responder com rapidez e flexibilidade às suas necessidades.
+        </p>
+    </section>
 
     <section id="servicos">
         <h2>SERVIÇOS PRESTADOS</h2>
@@ -501,15 +608,6 @@
         </div>
     </section>
 
-
-  <section id="sobre">
-    <h2>SOBRE NÓS</h2>
-    <p class="sobre">
-        A TaxiCerveira é uma empresa recente, mas que se apoia numa equipa de motoristas experientes e conhecedores profundos da região do Alto Minho. Graças à experiência acumulada ao longo dos anos em trabalhos anteriores, os nossos condutores garantem um serviço profissional, seguro e eficiente, sempre focado em oferecer conforto e pontualidade em cada viagem.
-        Estamos disponíveis 24 horas por dia, 7 dias por semana, prontos para responder com rapidez e flexibilidade às suas necessidades.
-    </p>
-  </section>
-
   <!--
   <section id="testemunhos">
     <h2>TESTEMUNHOS</h2>
@@ -525,7 +623,7 @@
         <div class="cartao-taxi">
             <!-- Táxi 1 -->
             <div class="coluna-taxi">
-                <img src="./CarroSClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
+                <img src="./Cars/CarroSClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
                 <h3 class="titulo-taxi">Até 4 Pessoas</h3>
                 <p class="coluna-taxi-descrip">
                     Os preços apresentados já incluem IVA. De acordo com o seu pedido, escolheremos o veículo que melhor se adapte às suas necessidades. Valor desde:
@@ -535,7 +633,7 @@
 
             <!-- Táxi 2 -->
             <div class="coluna-taxi">
-                <img src="./CarrinhaVClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
+                <img src="./Cars/CarrinhaVClass.png" alt="Imagem de táxi para até 4 pessoas disponível em Cerveira e arredores" class="imagem-taxi" />
                 <h3 class="titulo-taxi">Mais de 4 Pessoas</h3>
                 <p class="coluna-taxi-descrip">
                     *Os preços apresentados já incluem IVA. De acordo com o seu pedido, escolheremos o veículo que melhor se adapte às suas necessidades. Valor justo e transparente.
@@ -568,30 +666,41 @@
         </div>
     </section>
 
-
-  <section id="contacto">
-    <h2>CONTACTO</h2>
-    <form>
-      <input type="text" placeholder="Nome" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Mensagem..." rows="4" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <p style="text-align:center; margin-top:1rem;">📞 +351 910 779 407 | ✉️ taxi@cerveira.pt</p>
-  </section>
+    <section id="contacto">
+        <h2>CONTACTO</h2>
+        <form id="contact-form" onsubmit="sendEmail(event)">
+            <input type="text" name="name" placeholder="O seu nome" required />
+            <input type="email" name="email" placeholder="O seu email" required />
+            <input type="hidden" name="recaptcha_token" id="recaptcha-token">
+            <textarea name="message" placeholder="A sua mensagem" required></textarea>
+            
+            <!-- Google reCAPTCHA -->
+            <button class="header-btn" type="submit">Enviar</button>
+            
+        </form>
+        
+        <p style="text-align:center; margin-top:1rem;">📞 +351 910 779 407 | ✉️ taxi@cerveira.pt</p>
+    </section>
 
   <footer>
     &copy; 2025 TaxiCerveira. Todos os direitos reservados. <br />
     <small>Home | Empresa | Contactos | Política de Privacidade</small>
   </footer>
+</body>
+</html>
 
-  <script>
+<script>
     const nav = document.getElementById('navbar');
     const LheaderContent = document.getElementById('headerContent-left');
     const RheaderContent = document.getElementById('headerContent-right');
     const sections = document.querySelectorAll('section');
     const logo = document.getElementById('logo-img');
     const header = document.querySelector("header");
+
+    // Initialize EmailJS
+    (function () {
+        emailjs.init("5W8RHkDQIoA7-sfDv"); // Use token from EmailJS
+    })();
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
@@ -627,7 +736,32 @@
             }
         });
     });
-  
-    </script>
-</body>
-</html>
+
+    function sendEmail(event) {
+        event.preventDefault();
+
+        // Executa o reCAPTCHA v3
+        grecaptcha.ready(function () {
+            grecaptcha.execute("6LfyW24rAAAAAKvUmrXl5ZvVpZYC7U4BN2tIpM2g", { action: "submit" })
+            .then(function (token) {
+                if (!token) {
+                    alert("Falha no reCAPTCHA. Tente novamente.");
+                    return;
+                }
+
+                document.getElementById("recaptcha-token").value = token;
+
+                // Envia com EmailJS
+                emailjs.sendForm('service_hwl5tpo', 'template_auov6d5', event.target)
+                .then(() => {
+                    alert("Mensagem enviada com sucesso!");
+                    event.target.reset();
+                })
+                .catch((error) => {
+                    console.error("Erro ao enviar:", error);
+                    alert("Erro ao enviar. Tente novamente mais tarde.");
+                });
+            });
+        });
+    }
+</script>   
